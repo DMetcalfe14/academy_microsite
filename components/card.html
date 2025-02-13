@@ -1,0 +1,32 @@
+<a
+    class="group h-full"
+    href="#"
+    aria-label="{{type}}: {{title}} - {{duration}}"
+>
+    <div class="flex flex-col bg-white border border-slate-200 rounded-lg h-full">
+        <div class="relative h-56 overflow-hidden rounded-t-lg">
+            <div
+                class="absolute top-2 left-2 bg-sky-950 text-white text-sm font-semibold px-2 py-1 rounded flex items-center justify-center h-8 z-1"
+                aria-label="pathway"
+            >
+                <i class="{{icon}}" aria-hidden="true"></i>
+            </div>
+            <div
+                class="absolute top-2 right-2 bg-sky-950 text-white text-sm font-semibold px-2 py-1 rounded flex items-center justify-center h-8 z-1"
+            >
+                <i class="iconoir-clock mr-1 stroke-3" aria-hidden="true"></i>
+                <span>{{duration}}</span>
+            </div>
+            <img
+                src="{{thumbnail}}"
+                class="w-full h-full object-cover transition-transform duration-500 transform group-hover:scale-105 z-1"
+                alt="{{alt}}"
+            />
+        </div>
+        <div class="p-4 flex-grow">
+            <h2 class="mb-2 text-lg font-semibold line-clamp-2">{{title}}</h2>
+            <p class="mb-4 line-clamp-3">{{content}}</p>
+            <div class="flex flex-wrap gap-2">{{categories}}</div>
+        </div>
+    </div>
+</a>

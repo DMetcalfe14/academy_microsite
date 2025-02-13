@@ -1,0 +1,20 @@
+<div id="featured_learning_block" class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-4 gap-6" data-category="{{category}}" aria-hidden="{{visible}}">
+    <div class="lg:col-span-1">
+        <h1 class="text-2xl font-semibold mb-4">
+           {{title}}
+        </h1>
+        <p class="mb-5">{{description}}</p>
+        <button
+            class="font-semibold hover:text-orange-500 mb-5">View
+            all <i class="iconoir-arrow-right"></i></button>
+    </div>
+    <div class="col-span-3 glide">
+        <div class="glide__track mb-4" data-glide-el="track">
+            <ul id="featured_learning_cards" data-category="{{category}}" class="glide__slides"/>
+        </div>
+        <div class="glide__arrows float-right" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left px-4 py-2 bg-orange-500 text-white rounded font-semibold hover:bg-orange-600" data-glide-dir="<"><</button>
+            <button class="glide__arrow glide__arrow--right px-4 py-2 bg-orange-500 text-white rounded font-semibold hover:bg-orange-600" data-glide-dir=">">></button>
+        </div>
+    </div>
+</div>

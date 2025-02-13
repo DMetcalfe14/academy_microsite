@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    <link href="https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+        :root {
+            --text-color: #6b7280;
+            --saturated-background: #FFEDE3;
+        }
+
+        p {
+            color: var(--text-color);
+        }
+
+        .saturated-background {
+            background-color: var(--saturated-background);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="min-h-full">
+        <main>
+            <section class="mb-15">
+                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                    <h1 class="text-2xl font-semibold mb-4">Brand New 🌟</h1>
+                    <div id="new_learning" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" />
+                </div>
+            </section>
+            <section class="saturated-background">
+                <div id="featured_learning" class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 py-15">
+                    <div id="toggles" class="flex mb-10 gap-3" />
+                </div>
+            </section>
+    </div>
+    </main>
+    </div>
+    <script src="/js/dashboard.js" type="module"></script>
+</body>
+
+</html>

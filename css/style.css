@@ -1,0 +1,15 @@
+.toggle-active {
+  background-color: var(--color-orange-500);
+  color: #ffffff;
+}
+
+.toggle-inactive {
+  border: 1px solid var(--color-orange-500);
+  color: var(--color-orange-500);
+
+}
+
+.toggle-inactive:hover {
+  background-color: var(--color-orange-500);
+  color: #ffffff;
+}
