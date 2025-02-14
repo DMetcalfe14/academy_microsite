@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    <link href="https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+        :root {
+            --text-color: #6b7280;
+            --saturated-background: #FFEDE3;
+        }
+
+        /* p {
+            color: var(--text-color);
+        } */
+
+        .saturated-background {
+            background-color: var(--saturated-background);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="min-h-full">
+        <!-- Loading Screen -->
+        <!-- <div id="loading-screen" class="fixed inset-0 flex items-center justify-center bg-white z-50">
+            <div class="flex flex-col items-center">
+                <div class="w-16 h-16 border-4 border-gray-300 border-t-orange-500 rounded-full animate-spin"></div>
+            </div>
+        </div> -->
+        <main>
+            <section class="mb-15">
+                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="grid-cols-1">
+                            <h1 class="text-2xl font-semibold mb-4">Filters</h1>
+                            <div class="mb-6" id="categories">
+                                <p class="text-md font-semibold mb-2">Categories</p>
+                            </div>
+                            <div class="mb-6" id="types">
+                                <p class="text-md font-semibold mb-2">Types</p>
+                            </div>
+                            <div id="duration">
+                                <p class="text-md font-semibold mb-2">Duration (mins)</p>
+                                <div class="flex gap-4">
+                                    <div>
+                                        <label for="min-duration"
+                                            class="block text-sm font-medium text-gray-700">Min</label>
+                                        <input type="number" id="min-duration" name="min-duration"
+                                            class="mt-1 p-1 max-w-25 rounded-md bg-gray-100 focus:border-orange-500 focus:ring-orange-500 sm:text-sm"
+                                            min="0" step="5" placeholder="0">
+                                    </div>
+                                    <div>
+                                        <label for="max-duration"
+                                            class="block text-sm font-medium text-gray-700">Max</label>
+                                        <input type="number" id="max-duration" name="max-duration"
+                                            class="mt-1 p-1 max-w-25 rounded-md bg-gray-100 focus:border-orange-500 focus:ring-orange-500 sm:text-sm"
+                                            min="5" step="5" placeholder="15">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-3">
+                            <div class="relative w-full mb-6">
+                                <i class="iconoir-search absolute w-5 h-5 top-3 left-2.5 text-slate-600"></i>
+                                <input id="search" type="text" placeholder="search for articles, courses, and more..."
+                                    class="w-full pl-8 border border-slate-200 rounded-full px-3 py-2 focus:outline-none focus:border-orange-500 ring-1 ring-transparent focus:ring-orange-500" />
+                            </div>
+                            <p class="text-sm mb-4"><span id="results_count"></span> results</p>
+                            <div id="results" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"></div>
+                            <div class="flex items-center gap-8 place-content-between">
+                                <button disabled class="px-4 py-2 bg-gray-500 text-white rounded font-semibold" type="button">
+                                  <i class="iconoir-arrow-left"></i>
+                                </button>
+                               
+                                <p>
+                                  Page <strong>1</strong> of&nbsp;<strong>10</strong>
+                                </p>
+                                
+                                <button class="px-4 py-2 bg-orange-500 text-white rounded font-semibold hover:bg-orange-600" type="button">
+                                    <i class="iconoir-arrow-right"></i>
+                                </button>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    </div>
+    </main>
+    </div>
+    <script src="/js/search.js" type="module"></script>
+</body>
+
+</html>
