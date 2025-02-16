@@ -137,6 +137,8 @@ window.onload = async () => {
   const new_area = document.querySelector("#new_learning");
   renderCards(new_area, cards);
   renderFeatured(cards);
+  renderEvents(cards);
+  renderQuickLinks();
 };
 
 const renderEvents = async (cards) => {
@@ -159,7 +161,7 @@ const renderEvents = async (cards) => {
 
     const cardHtmlWithCategories = eventTemplate
     .replaceAll("{{title}}", card.title)
-    .replace("{{content}}", card.content)
+    .replace("{{description}}", card.description)
     .replace("{{thumbnail}}", card.thumbnail)
     .replace("{{location}}", card.location)
     .replace("{{date}}", dateStr)
