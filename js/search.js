@@ -1,7 +1,7 @@
 import {
-  renderAndAppendToParent,
-  createCardWithTags,
-  fetchJson,
+    renderAndAppendToParent,
+    createCardWithTags,
+    fetchJson,
 } from "./utilities-alternative.js";
 import { SearchHandler, FilterHandler, DurationHandler } from "./filter.js";
 
@@ -11,41 +11,41 @@ const results_counter = document.querySelector("#results_count");
 const categoriesContainer = document.getElementById("categories");
 
 let categories = [
-  { label: "Analysis" },
-  { label: "Change" },
-  { label: "Communication" },
-  { label: "Debate" },
-  { label: "Decision making" },
+    { label: "Analysis" },
+    { label: "Change" },
+    { label: "Communication" },
+    { label: "Debate" },
+    { label: "Decision making" },
 ];
 
 categories = categories.map((category) => {
-  return {
-    id: category.label.toLowerCase().replace(" ", "_"),
-    label: category.label,
-  };
+    return {
+        id: category.label.toLowerCase().replace(" ", "_"),
+        label: category.label,
+    };
 });
 
 renderAndAppendToParent(
-  "components/checkbox.html",
-  categories,
-  categoriesContainer
+    "components/checkbox.html",
+    categories,
+    categoriesContainer
 );
 
 const typesContainer = document.getElementById("types");
 
 let types = [
-  { label: "Audio Book" },
-  { label: "Book" },
-  { label: "eLearning" },
-  { label: "Event" },
-  { label: "Pathway" },
+    { label: "Audio Book" },
+    { label: "Book" },
+    { label: "eLearning" },
+    { label: "Event" },
+    { label: "Pathway" },
 ];
 
 types = types.map((type) => {
-  return {
-    id: type.label.toLowerCase().replace(" ", "_"),
-    label: type.label,
-  };
+    return {
+        id: type.label.toLowerCase().replace(" ", "_"),
+        label: type.label,
+    };
 });
 
 renderAndAppendToParent("components/checkbox.html", types, typesContainer);
@@ -59,7 +59,7 @@ createCardWithTags(cards, cardsContainer);
 results_count = cards.length;
 
 const updateCount = () => {
-  results_counter.innerText = results_count;
+    results_counter.innerText = results_count;
 };
 
 updateCount();
@@ -74,51 +74,56 @@ let maxDuration = null;
 const search = document.querySelector("#search");
 
 search.addEventListener("input", (event) => {
-  currentSearchQuery = event.target.value;
-  const filtered = chain.handle(
-    { searchQuery: currentSearchQuery, checked: currentFilters },
-    cards
-  );
-  console.log(filtered);
+    currentSearchQuery = event.target.value;
+    const filtered = chain.handle(
+        { searchQuery: currentSearchQuery, checked: currentFilters },
+        cards
+    );
+    console.log(filtered);
 });
 
 const filters = document.querySelectorAll('input[type = "checkbox"]');
 
 filters.forEach((filter) => {
-  filter.addEventListener("change", (event) => {
-    const category = event.target.getAttribute("data-category");
-    if (event.target.checked) {
-      currentFilters.push(category);
-    } else {
-      currentFilters = currentFilters.filter((x) => x !== category);
-    }
-    const filtered = chain.handle(
-      { searchQuery: currentSearchQuery, checked: currentFilters },
-      cards
-    );
-    console.log(currentFilters);
-    console.log(filtered);
-  });
+    filter.addEventListener("change", (event) => {
+        const category = event.target.getAttribute("data-category");
+        if (event.target.checked) {
+            currentFilters.push(category);
+        } else {
+            currentFilters = currentFilters.filter((x) => x !== category);
+        }
+        const filtered = chain.handle(
+            { searchQuery: currentSearchQuery, checked: currentFilters },
+            cards
+        );
+        console.log(currentFilters);
+        console.log(filtered);
+    });
 });
 
 const minDurationInput = document.getElementById("min-duration");
 const maxDurationInput = document.getElementById("max-duration");
 
-minDurationInput.addEventListener("input", (event) => {
-  event.minDuration = event.target.value
-    ? parseInt(event.target.value, 10)
-    : null;
-  const filtered = chain.handle(
-    {
-      searchQuery: currentSearchQuery,
-      checked: currentFilters,
-      minDuration: minDuration,
-      maxDuration: maxDuration,
-    },
-    cards
-  );
-  console.log(filtered);
-});
+const handleDurationInput = (event, type) => {
+    if (type === "min") {
+        minDuration = event.target.value || null;
+    } else if (type === "max") {
+        maxDuration = event.target.value || null;
+    }
+    const filtered = chain.handle(
+        {
+            searchQuery: currentSearchQuery,
+            checked: currentFilters,
+            minDuration: minDuration,
+            maxDuration: maxDuration,
+        },
+        cards
+    );
+    console.log(filtered);
+};
+
+minDurationInput.addEventListener("input", (event) => handleDurationInput(event, "min"));
+maxDurationInput.addEventListener("input", (event) => handleDurationInput(event, "max"));
 
 // document.addEventListener("DOMContentLoaded", async () => {
 //     setTimeout(() => {

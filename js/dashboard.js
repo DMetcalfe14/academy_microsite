@@ -138,3 +138,61 @@ window.onload = async () => {
   renderCards(new_area, cards);
   renderFeatured(cards);
 };
+
+const renderEvents = async (cards) => {
+  const eventContainer = document.querySelector("#new_events");
+  const eventTemplate = await fetchTemplate("components/horizontal_card.html");
+  const tagTemplate = await fetchTemplate("components/tag.html");
+
+  cards = cards.filter((card) => card.type === "event");
+
+  cards.forEach((card, index) => {
+    if(index >= 2) {
+      return
+    }
+    
+    const categoriesHtml = (card.categories || [])
+    .map((tag) => tagTemplate.replace("{{category}}", tag))
+    .join(" ");
+
+    const dateStr = formatDate(card.date);
+
+    const cardHtmlWithCategories = eventTemplate
+    .replaceAll("{{title}}", card.title)
+    .replace("{{content}}", card.content)
+    .replace("{{thumbnail}}", card.thumbnail)
+    .replace("{{location}}", card.location)
+    .replace("{{date}}", dateStr)
+    .replace("{{categories}}", categoriesHtml);
+
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = cardHtmlWithCategories.trim();
+    const event = tempDiv.firstElementChild;
+    eventContainer.appendChild(event);
+  });
+};
+
+const renderQuickLinks = async () => {
+  const linkContainer = document.querySelector("#quick_links");
+
+  const links = await fetchJson("../links.json");
+  const linkTemplate = await fetchTemplate("components/quick_links.html");
+
+  links.forEach(link => {
+    const linkHtml = linkTemplate
+    .replaceAll("{{title}}", link.title)
+    .replace("{{icon}}", link.icon)
+    .replace("{{href}}", link.href);
+
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = linkHtml.trim();
+    const node = tempDiv.firstElementChild;
+    linkContainer.appendChild(node);
+  });
+};
+
+const formatDate = (dateStr) => {
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const [day, month] = dateStr.split("/");
+  return `${parseInt(day)}<br>${months[parseInt(month) - 1]}`
+}

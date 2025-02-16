@@ -1,3 +1,7 @@
+.glide__slides {
+  white-space: unset !important;
+}
+
 .toggle-active {
   background-color: var(--color-orange-500);
   color: #ffffff;
