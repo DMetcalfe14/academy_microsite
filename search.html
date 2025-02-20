@@ -75,15 +75,15 @@
                             <p class="text-sm mb-4"><span id="results_count"></span> results</p>
                             <div id="results" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"></div>
                             <div class="flex items-center gap-8 place-content-between">
-                                <button disabled class="px-4 py-2 bg-gray-500 text-white rounded font-semibold" type="button">
+                                <button id="prev" disabled class="px-4 py-2 bg-gray-500 text-white rounded font-semibold" type="button">
                                   <i class="iconoir-arrow-left"></i>
                                 </button>
                                
                                 <p>
-                                  Page <strong>1</strong> of&nbsp;<strong>10</strong>
+                                  Page <span id="current_page"><strong>1</strong></span> of&nbsp;<span id="no_pages"><strong>10</strong></span>
                                 </p>
                                 
-                                <button class="px-4 py-2 bg-orange-500 text-white rounded font-semibold hover:bg-orange-600" type="button">
+                                <button id="next" class="px-4 py-2 bg-orange-500 text-white rounded font-semibold hover:bg-orange-600" type="button">
                                     <i class="iconoir-arrow-right"></i>
                                 </button>
                               </div>

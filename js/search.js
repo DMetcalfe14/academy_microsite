@@ -52,7 +52,8 @@ renderAndAppendToParent(
                     maxDuration: maxDuration },
                 cards
             );
-            renderCards(filtered);
+            currentPage = 1;
+            renderPaginatedCards(filtered);
         });
     });
 });
@@ -75,27 +76,16 @@ renderAndAppendToParent("components/checkbox.html", types, typesContainer).then(
                     maxDuration: maxDuration },
                 cards
             );
-            renderCards(filtered);
+            renderPaginatedCards(filtered);
         });
     });
 });
-
-const renderCards = (filteredCards) => {
-    cardsContainer.innerHTML = "";
-    createCardWithTags(filteredCards, cardsContainer);
-    results_count = filteredCards.length;
-    updateCount();
-};
-
-createCardWithTags(cards, cardsContainer);
 
 results_count = cards.length;
 
 const updateCount = () => {
     results_counter.innerText = results_count;
 };
-
-updateCount();
 
 const chain = new SearchHandler(new FilterHandler(new DurationHandler()));
 
@@ -123,26 +113,8 @@ search.addEventListener("input", (event) => {
             maxDuration: maxDuration },
         cards
     );
-    renderCards(filtered);
+    renderPaginatedCards(filtered);
 });
-
-// const filters = document.querySelectorAll('input[type="checkbox"]');
-
-// filters.forEach((filter) => {
-//     filter.addEventListener("change", (event) => {
-//         const category = event.target.getAttribute("data-category");
-//         if (event.target.checked) {
-//             currentCategories.push(category);
-//         } else {
-//             currentCategories = currentCategories.filter((x) => x !== category);
-//         }
-//         const filtered = chain.handle(
-//             { searchQuery: currentSearchQuery, checked: currentCategories },
-//             cards
-//         );
-//         renderCards(filtered);
-//     });
-// });
 
 const minDurationInput = document.getElementById("min-duration");
 const maxDurationInput = document.getElementById("max-duration");
@@ -162,9 +134,10 @@ const handleDurationInput = (event, type) => {
             maxDuration: maxDuration
         },
         cards
-    );
-    renderCards(filtered);
-};
+    )
+    currentPage = 1;
+    renderPaginatedCards(filtered);
+}
 
 minDurationInput.addEventListener("input", (event) =>
     handleDurationInput(event, "min")
@@ -172,3 +145,71 @@ minDurationInput.addEventListener("input", (event) =>
 maxDurationInput.addEventListener("input", (event) =>
     handleDurationInput(event, "max")
 );
+
+const itemsPerPage = 5;
+let currentPage = 1;
+
+const prevButton = document.getElementById("prev");
+const nextButton = document.getElementById("next");
+const currentPageText = document.getElementById("current_page");
+const noPagesText = document.getElementById("no_pages");
+
+const renderPaginatedCards = (filteredCards) => {
+    cardsContainer.innerHTML = "";
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const paginatedCards = filteredCards.slice(start, end);
+    createCardWithTags(paginatedCards, cardsContainer);
+    results_count = filteredCards.length;
+    updateCount();
+    updatePagination(filteredCards.length);
+};
+
+const updatePagination = (totalItems) => {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    currentPageText.innerText = currentPage;
+    noPagesText.innerText = totalPages;
+
+    prevButton.disabled = currentPage === 1;
+    nextButton.disabled = currentPage === totalPages;
+};
+
+prevButton.addEventListener("click", () => {
+    if (currentPage > 1) {
+        currentPage--;
+        const filtered = chain.handle(
+            {
+                searchQuery: currentSearchQuery,
+                categories: currentCategories,
+                types: currentTypes,
+                minDuration: minDuration,
+                maxDuration: maxDuration
+            },
+            cards
+        );
+        renderPaginatedCards(filtered);
+    }
+});
+
+nextButton.addEventListener("click", () => {
+    const totalPages = Math.ceil(results_count / itemsPerPage);
+    if (currentPage < totalPages) {
+        currentPage++;
+        const filtered = chain.handle(
+            {
+                searchQuery: currentSearchQuery,
+                categories: currentCategories,
+                types: currentTypes,
+                minDuration: minDuration,
+                maxDuration: maxDuration
+            },
+            cards
+        );
+        renderPaginatedCards(filtered);
+    }
+});
+
+// Initial render
+renderPaginatedCards(cards);
+updateCount();
+updatePagination(cards.length);
