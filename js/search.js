@@ -54,6 +54,13 @@ const cardsContainer = document.getElementById("results");
 
 let cards = await fetchJson("../new_learning.json");
 
+const renderCards = (filteredCards) => {
+    cardsContainer.innerHTML = "";
+    createCardWithTags(filteredCards, cardsContainer);
+    results_count = filteredCards.length;
+    updateCount();
+};
+
 createCardWithTags(cards, cardsContainer);
 
 results_count = cards.length;
@@ -75,8 +82,8 @@ const params = new URLSearchParams(window.location.search);
 
 const search = document.querySelector("#search");
 
-if(params.has('query')) {
-    search.value = params.get('query');
+if (params.has("query")) {
+    search.value = params.get("query");
 }
 
 search.addEventListener("input", (event) => {
@@ -85,10 +92,10 @@ search.addEventListener("input", (event) => {
         { searchQuery: currentSearchQuery, checked: currentFilters },
         cards
     );
-    console.log(filtered);
+    renderCards(filtered);
 });
 
-const filters = document.querySelectorAll('input[type = "checkbox"]');
+const filters = document.querySelectorAll('input[type="checkbox"]');
 
 filters.forEach((filter) => {
     filter.addEventListener("change", (event) => {
@@ -102,8 +109,7 @@ filters.forEach((filter) => {
             { searchQuery: currentSearchQuery, checked: currentFilters },
             cards
         );
-        console.log(currentFilters);
-        console.log(filtered);
+        renderCards(filtered);
     });
 });
 
@@ -125,17 +131,12 @@ const handleDurationInput = (event, type) => {
         },
         cards
     );
-    console.log(filtered);
+    renderCards(filtered);
 };
 
-minDurationInput.addEventListener("input", (event) => handleDurationInput(event, "min"));
-maxDurationInput.addEventListener("input", (event) => handleDurationInput(event, "max"));
-
-
-
-// document.addEventListener("DOMContentLoaded", async () => {
-//     setTimeout(() => {
-//         document.getElementById("loading-screen").classList.add("hidden");
-//         document.querySelector("main").classList.remove("opacity-0");
-//     }, 500);
-// });
+minDurationInput.addEventListener("input", (event) =>
+    handleDurationInput(event, "min")
+);
+maxDurationInput.addEventListener("input", (event) =>
+    handleDurationInput(event, "max")
+);
