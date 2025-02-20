@@ -9,50 +9,68 @@ let results_count = 0;
 const results_counter = document.querySelector("#results_count");
 
 const categoriesContainer = document.getElementById("categories");
+const typesContainer = document.getElementById("types");
+const cardsContainer = document.getElementById("results");
 
-let categories = [
-    { label: "Analysis" },
-    { label: "Change" },
-    { label: "Communication" },
-    { label: "Debate" },
-    { label: "Decision making" },
-];
+let cards = await fetchJson("../new_learning.json");
 
-categories = categories.map((category) => {
-    return {
-        id: category.label.toLowerCase().replace(" ", "_"),
-        label: category.label,
-    };
-});
+const getUniqueValues = (items, key) => {
+    if (key === "categories") {
+        return [...new Set(items.flatMap(item => item[key]))].map(value => ({
+            id: value.toLowerCase().replace(" ", "_"),
+            label: value,
+        }));
+    }
+    return [...new Set(items.map(item => item[key]))].map(value => ({
+        id: value.toLowerCase().replace(" ", "_"),
+        label: value,
+    }));
+};
+
+let categories = getUniqueValues(cards, "categories");
+let types = getUniqueValues(cards, "type");
 
 renderAndAppendToParent(
     "components/checkbox.html",
     categories,
     categoriesContainer
-);
-
-const typesContainer = document.getElementById("types");
-
-let types = [
-    { label: "Audio Book" },
-    { label: "Book" },
-    { label: "eLearning" },
-    { label: "Event" },
-    { label: "Pathway" },
-];
-
-types = types.map((type) => {
-    return {
-        id: type.label.toLowerCase().replace(" ", "_"),
-        label: type.label,
-    };
+).then(() => {
+    const filters = document.querySelectorAll('input[type="checkbox"]');
+    filters.forEach((filter) => {
+        filter.addEventListener("change", (event) => {
+            const category = event.target.getAttribute("data-category");
+            if (event.target.checked) {
+                currentFilters.push(category);
+            } else {
+                currentFilters = currentFilters.filter((x) => x !== category);
+            }
+            const filtered = chain.handle(
+                { searchQuery: currentSearchQuery, checked: currentFilters },
+                cards
+            );
+            renderCards(filtered);
+        });
+    });
 });
 
-renderAndAppendToParent("components/checkbox.html", types, typesContainer);
-
-const cardsContainer = document.getElementById("results");
-
-let cards = await fetchJson("../new_learning.json");
+renderAndAppendToParent("components/checkbox.html", types, typesContainer).then(() => {
+    const filters = document.querySelectorAll('input[type="checkbox"]');
+    filters.forEach((filter) => {
+        filter.addEventListener("change", (event) => {
+            const category = event.target.getAttribute("data-category");
+            if (event.target.checked) {
+                currentFilters.push(category);
+            } else {
+                currentFilters = currentFilters.filter((x) => x !== category);
+            }
+            const filtered = chain.handle(
+                { searchQuery: currentSearchQuery, checked: currentFilters },
+                cards
+            );
+            renderCards(filtered);
+        });
+    });
+});
 
 const renderCards = (filteredCards) => {
     cardsContainer.innerHTML = "";
