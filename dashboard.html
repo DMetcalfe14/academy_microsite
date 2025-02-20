@@ -16,10 +16,6 @@
             --saturated-background: #FFEDE3;
         }
 
-        p {
-            color: var(--text-color);
-        }
-
         .saturated-background {
             background-color: var(--saturated-background);
         }
@@ -31,9 +27,31 @@
         <main>
             <section class="mt-5">
                 <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                    <div class="grid w-full place-items-center rounded-lg relative">
-                        <div class="w-full h-full bg-gradient-to-t from-black to-transparent absolute rounded-lg"></div>
-                        <img class="object-cover object-center w-full rounded-lg aspect-16/9 h-100" src="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+                    <div class="grid w-full rounded-lg relative bottom-0">
+                        <div
+                            class="w-full h-full bg-gradient-to-t from-black to-transparent absolute rounded-lg p-10 flex flex-col justify-end">
+                            <h2 class="text-4xl font-semibold tracking-tight text-white">Find your next leadership
+                                breakthrough</h2>
+                            <p class="mt-4 text-lg text-white">Learn the skills needed to lead high-performing teams
+                                with the Leadersip and Management Academy.</p>
+                            <div class="mt-6 flex max-w-md">
+                                <form class="w-full flex gap-4" action="/search.html" >
+                                    <label for="search" class="sr-only">Search</label>
+                                    <input id="search" name="query" type="text" required=""
+                                        class="min-w-0 flex-auto rounded-md bg-white px-3.5 py-2 text-base outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-orange-500 text-sm/6"
+                                        placeholder="Search for articles, learning and more...">
+                                    <button type="submit"
+                                        class="flex-none rounded-md bg-orange-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-orange-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Search</button>
+                                </form>
+                            </div>
+                        </div>
+                        <img class="object-cover object-center w-full rounded-lg aspect-16/9 h-100"
+                            src="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            alt="" />
+                    </div>
+                    <div class="glide__arrows float-right mt-4" data-glide-el="controls">
+                        <button class="glide__arrow glide__arrow--left px-4 py-2 bg-orange-500 text-white rounded font-semibold hover:bg-orange-600" data-glide-dir="<"><</button>
+                        <button class="glide__arrow glide__arrow--right px-4 py-2 bg-orange-500 text-white rounded font-semibold hover:bg-orange-600" data-glide-dir=">">></button>
                     </div>
                 </div>
             </section>

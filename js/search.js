@@ -71,7 +71,13 @@ let currentFilters = [];
 let minDuration = null;
 let maxDuration = null;
 
+const params = new URLSearchParams(window.location.search);
+
 const search = document.querySelector("#search");
+
+if(params.has('query')) {
+    search.value = params.get('query');
+}
 
 search.addEventListener("input", (event) => {
     currentSearchQuery = event.target.value;
@@ -124,6 +130,8 @@ const handleDurationInput = (event, type) => {
 
 minDurationInput.addEventListener("input", (event) => handleDurationInput(event, "min"));
 maxDurationInput.addEventListener("input", (event) => handleDurationInput(event, "max"));
+
+
 
 // document.addEventListener("DOMContentLoaded", async () => {
 //     setTimeout(() => {
