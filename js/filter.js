@@ -29,13 +29,21 @@ class SearchHandler extends EventHandler {
 
 class FilterHandler extends EventHandler {
   applyFilter(event, items) {
-    if (event.checked.length > 0) {
-      console.log(event.checked);
-      return items.filter((item) =>
-        event.checked.some((category) => item.categories.includes(category))
+    let filteredItems = items;
+
+    if (event.categories.length > 0) {
+      filteredItems = filteredItems.filter((item) =>
+        event.categories.some((category) => item.categories.includes(category))
       );
     }
-    return items;
+
+    if (event.types.length > 0) {
+      filteredItems = filteredItems.filter((item) =>
+        event.types.some((type) => item.type === type)
+      );
+    }
+
+    return filteredItems;
   }
 }
 

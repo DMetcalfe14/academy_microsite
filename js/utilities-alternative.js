@@ -68,7 +68,8 @@ async function renderAndAppendToParent(templateUrl, data, parentContainer) {
         // Create a wrapper element to safely insert the rendered HTML
         const wrapper = document.createElement("div");
         wrapper.innerHTML = renderedHtml;
-        parentContainer.appendChild(wrapper);
+        const node = parentContainer.appendChild(wrapper);
+        return node;
     } catch (error) {
         console.error("Error rendering and appending items:", error);
     }
@@ -82,12 +83,12 @@ async function renderAndAppendToParent(templateUrl, data, parentContainer) {
  */
 function getIconByType(type) {
     const icons = {
-        pathway: "iconoir-path-arrow",
-        video: "iconoir-video-camera",
-        event: "iconoir-calendar",
-        article: "iconoir-journal-page",
-        file: "iconoir-empty-page",
-        default: "iconoir-question-mark",
+        Pathway: "iconoir-path-arrow",
+        Video: "iconoir-video-camera",
+        Event: "iconoir-calendar",
+        Article: "iconoir-journal-page",
+        File: "iconoir-empty-page",
+        Default: "iconoir-question-mark",
     };
     return icons[type] || icons.default;
 }

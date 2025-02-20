@@ -34,18 +34,22 @@ renderAndAppendToParent(
     "components/checkbox.html",
     categories,
     categoriesContainer
-).then(() => {
-    const filters = document.querySelectorAll('input[type="checkbox"]');
+).then((node) => {
+    const filters = node.querySelectorAll('input[type="checkbox"]');
     filters.forEach((filter) => {
         filter.addEventListener("change", (event) => {
             const category = event.target.getAttribute("data-category");
             if (event.target.checked) {
-                currentFilters.push(category);
+                currentCategories.push(category);
             } else {
-                currentFilters = currentFilters.filter((x) => x !== category);
+                currentCategories = currentCategories.filter((x) => x !== category);
             }
             const filtered = chain.handle(
-                { searchQuery: currentSearchQuery, checked: currentFilters },
+                { searchQuery: currentSearchQuery,
+                    categories: currentCategories, 
+                    types: currentTypes,
+                    minDuration: minDuration,
+                    maxDuration: maxDuration },
                 cards
             );
             renderCards(filtered);
@@ -53,18 +57,22 @@ renderAndAppendToParent(
     });
 });
 
-renderAndAppendToParent("components/checkbox.html", types, typesContainer).then(() => {
-    const filters = document.querySelectorAll('input[type="checkbox"]');
+renderAndAppendToParent("components/checkbox.html", types, typesContainer).then((node) => {
+    const filters = node.querySelectorAll('input[type="checkbox"]');
     filters.forEach((filter) => {
         filter.addEventListener("change", (event) => {
-            const category = event.target.getAttribute("data-category");
+            const type = event.target.getAttribute("data-category");
             if (event.target.checked) {
-                currentFilters.push(category);
+                currentTypes.push(type);
             } else {
-                currentFilters = currentFilters.filter((x) => x !== category);
+                currentTypes = currentTypes.filter((x) => x !== type);
             }
             const filtered = chain.handle(
-                { searchQuery: currentSearchQuery, checked: currentFilters },
+                { searchQuery: currentSearchQuery,
+                    categories: currentCategories, 
+                    types: currentTypes,
+                    minDuration: minDuration,
+                    maxDuration: maxDuration },
                 cards
             );
             renderCards(filtered);
@@ -92,7 +100,8 @@ updateCount();
 const chain = new SearchHandler(new FilterHandler(new DurationHandler()));
 
 let currentSearchQuery = "";
-let currentFilters = [];
+let currentCategories = [];
+let currentTypes = [];
 let minDuration = null;
 let maxDuration = null;
 
@@ -107,29 +116,33 @@ if (params.has("query")) {
 search.addEventListener("input", (event) => {
     currentSearchQuery = event.target.value;
     const filtered = chain.handle(
-        { searchQuery: currentSearchQuery, checked: currentFilters },
+        { searchQuery: currentSearchQuery,
+            categories: currentCategories, 
+            types: currentTypes,
+            minDuration: minDuration,
+            maxDuration: maxDuration },
         cards
     );
     renderCards(filtered);
 });
 
-const filters = document.querySelectorAll('input[type="checkbox"]');
+// const filters = document.querySelectorAll('input[type="checkbox"]');
 
-filters.forEach((filter) => {
-    filter.addEventListener("change", (event) => {
-        const category = event.target.getAttribute("data-category");
-        if (event.target.checked) {
-            currentFilters.push(category);
-        } else {
-            currentFilters = currentFilters.filter((x) => x !== category);
-        }
-        const filtered = chain.handle(
-            { searchQuery: currentSearchQuery, checked: currentFilters },
-            cards
-        );
-        renderCards(filtered);
-    });
-});
+// filters.forEach((filter) => {
+//     filter.addEventListener("change", (event) => {
+//         const category = event.target.getAttribute("data-category");
+//         if (event.target.checked) {
+//             currentCategories.push(category);
+//         } else {
+//             currentCategories = currentCategories.filter((x) => x !== category);
+//         }
+//         const filtered = chain.handle(
+//             { searchQuery: currentSearchQuery, checked: currentCategories },
+//             cards
+//         );
+//         renderCards(filtered);
+//     });
+// });
 
 const minDurationInput = document.getElementById("min-duration");
 const maxDurationInput = document.getElementById("max-duration");
@@ -143,9 +156,10 @@ const handleDurationInput = (event, type) => {
     const filtered = chain.handle(
         {
             searchQuery: currentSearchQuery,
-            checked: currentFilters,
+            categories: currentCategories, 
+            types: currentTypes,
             minDuration: minDuration,
-            maxDuration: maxDuration,
+            maxDuration: maxDuration
         },
         cards
     );
