@@ -99,10 +99,6 @@ const params = new URLSearchParams(window.location.search);
 
 const search = document.querySelector("#search");
 
-if (params.has("query")) {
-    search.value = params.get("query");
-}
-
 search.addEventListener("input", (event) => {
     currentSearchQuery = event.target.value;
     const filtered = chain.handle(
@@ -210,6 +206,24 @@ nextButton.addEventListener("click", () => {
 });
 
 // Initial render
-renderPaginatedCards(cards);
+
+if (params.has("query")) {
+    search.value = params.get("query");
+    currentSearchQuery = params.get("query");
+    const filtered = chain.handle(
+        { searchQuery: currentSearchQuery,
+            categories: currentCategories, 
+            types: currentTypes,
+            minDuration: minDuration,
+            maxDuration: maxDuration },
+        cards
+    );
+    renderPaginatedCards(filtered);
+    updatePagination(filtered.length);
+} else {
+    renderPaginatedCards(cards);
+    updatePagination(cards.length);
+}
+
 updateCount();
-updatePagination(cards.length);
+
