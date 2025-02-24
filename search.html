@@ -53,14 +53,14 @@
                                         <label for="min-duration"
                                             class="block text-sm font-medium text-gray-700">Min</label>
                                         <input type="number" id="min-duration" name="min-duration"
-                                            class="mt-1 p-1 max-w-25 rounded-md bg-gray-100 focus:border-orange-500 focus:ring-orange-500 sm:text-sm"
+                                            class="mt-1 p-1 max-w-25 rounded-md bg-gray-100 focus:border-primary focus:ring-(--primary) sm:text-sm"
                                             min="0" step="5" placeholder="0">
                                     </div>
                                     <div>
                                         <label for="max-duration"
                                             class="block text-sm font-medium text-gray-700">Max</label>
                                         <input type="number" id="max-duration" name="max-duration"
-                                            class="mt-1 p-1 max-w-25 rounded-md bg-gray-100 focus:border-orange-500 focus:ring-orange-500 sm:text-sm"
+                                            class="mt-1 p-1 max-w-25 rounded-md bg-gray-100 focus:border-primary focus:ring-(--primary) sm:text-sm"
                                             min="5" step="5" placeholder="15">
                                     </div>
                                 </div>
@@ -70,12 +70,12 @@
                             <div class="relative w-full mb-6">
                                 <i class="iconoir-search absolute w-5 h-5 top-3 left-2.5 text-slate-600"></i>
                                 <input id="search" type="text" placeholder="search for articles, courses, and more..."
-                                    class="w-full pl-8 border border-slate-200 rounded-full px-3 py-2 focus:outline-none focus:border-orange-500 ring-1 ring-transparent focus:ring-orange-500" />
+                                    class="w-full pl-8 border border-slate-200 rounded-full px-3 py-2 focus:outline-none focus:border-primary ring-1 ring-transparent focus:ring-(--primary)" />
                             </div>
                             <p class="text-sm mb-4"><span id="results_count"></span> results</p>
                             <div id="results" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"></div>
                             <div class="flex items-center gap-8 place-content-between">
-                                <button id="prev" class="px-4 py-2 bg-orange-500 text-white rounded font-semibold hover:bg-orange-600 disabled:bg-gray-500" type="button">
+                                <button id="prev" class="px-4 py-2 bg-primary text-white rounded font-semibold disabled:bg-gray-500" type="button">
                                   <i class="iconoir-arrow-left"></i>
                                 </button>
                                
@@ -83,7 +83,7 @@
                                   Page <span id="current_page"><strong>1</strong></span> of&nbsp;<span id="no_pages"><strong>10</strong></span>
                                 </p>
                                 
-                                <button id="next" class="px-4 py-2 bg-orange-500 text-white rounded font-semibold hover:bg-orange-600 disabled:bg-gray-500" type="button">
+                                <button id="next" class="px-4 py-2 bg-primary text-white rounded font-semibold disabled:bg-gray-500" type="button">
                                     <i class="iconoir-arrow-right"></i>
                                 </button>
                               </div>

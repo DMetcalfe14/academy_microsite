@@ -146,7 +146,7 @@ const renderEvents = async (cards) => {
   const eventTemplate = await fetchTemplate("components/horizontal_card.html");
   const tagTemplate = await fetchTemplate("components/tag.html");
 
-  cards = cards.filter((card) => card.type === "event");
+  cards = cards.filter((card) => card.type === "Event");
 
   cards.forEach((card, index) => {
     if(index >= 2) {

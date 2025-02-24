@@ -65,7 +65,7 @@ function createCardHtml(card, cardTemplate, tagTemplate) {
 
     return cardTemplate
         .replaceAll("{{title}}", card.title)
-        .replace("{{content}}", card.content)
+        .replace("{{description}}", card.description)
         .replaceAll("{{type}}", card.type)
         .replace("{{categories}}", categoriesHtml)
         .replaceAll("{{duration}}", card.duration)

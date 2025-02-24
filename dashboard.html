@@ -11,14 +11,6 @@
     <link href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
     <style>
-        :root {
-            --text-color: #6b7280;
-            --saturated-background: #FFEDE3;
-        }
-
-        .saturated-background {
-            background-color: var(--saturated-background);
-        }
     </style>
 </head>
 
@@ -27,31 +19,71 @@
         <main>
             <section class="mt-5">
                 <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                    <div class="grid w-full rounded-lg relative bottom-0">
-                        <div
-                            class="w-full h-full bg-gradient-to-t from-black to-transparent absolute rounded-lg p-10 flex flex-col justify-end">
-                            <h2 class="text-4xl font-semibold tracking-tight text-white">Find your next leadership
-                                breakthrough</h2>
-                            <p class="mt-4 text-lg text-white">Learn the skills needed to lead high-performing teams
-                                with the Leadersip and Management Academy.</p>
-                            <div class="mt-6 flex max-w-md">
-                                <form class="w-full flex gap-4" action="/search.html" >
-                                    <label for="search" class="sr-only">Search</label>
-                                    <input id="search" name="query" type="text" required=""
-                                        class="min-w-0 flex-auto rounded-md bg-white px-3.5 py-2 text-base outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-orange-500 text-sm/6"
-                                        placeholder="Search for articles, learning and more...">
-                                    <button type="submit"
-                                        class="flex-none rounded-md bg-orange-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-orange-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Search</button>
-                                </form>
-                            </div>
+                    <div id="main_carousel" class="glide grid w-full rounded-lg relative bottom-0">
+                        <div class="glide__track" data-glide-el="track">
+                            <ul class="glide__slides">
+                                <li class="glide__slide relative">
+                                    <div
+                                        class="w-full h-full bg-gradient-to-t from-black to-transparent absolute rounded-lg px-17 py-10 flex flex-col justify-end">
+                                        <h2 class="text-4xl font-semibold tracking-tight text-white">Find your next
+                                            leadership
+                                            breakthrough</h2>
+                                        <p class="mt-4 text-lg text-white">Learn the skills needed to lead
+                                            high-performing teams
+                                            with the Leadersip and Management Academy.</p>
+                                        <div class="mt-6 flex max-w-md">
+                                            <form class="w-full flex gap-4" action="/search.html">
+                                                <label for="search" class="sr-only">Search</label>
+                                                <input id="search" name="query" type="text" required=""
+                                                    class="min-w-0 flex-auto rounded-md bg-white px-3.5 py-2 text-base outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-primary text-sm/6"
+                                                    placeholder="Search for articles, learning and more...">
+                                                <button type="submit"
+                                                    class="flex-none rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Search</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <img class="object-cover object-center w-full rounded-lg aspect-16/9 h-100"
+                                        src="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                        alt="" />
+                                </li>
+                                <li class="glide__slide relative">
+                                    <div
+                                        class="w-full h-full bg-gradient-to-t from-black to-transparent absolute rounded-lg px-17 py-10 flex flex-col justify-end">
+                                        <h2 class="text-4xl font-semibold tracking-tight text-white">Discover the 9
+                                            Leadership Capabilities</h2>
+                                        <p class="mt-4 text-lg text-white">Great leaders excel in nine key areas—from
+                                            strategic thinking to emotional intelligence. Explore these essential
+                                            capabilities and enhance your leadership skills today!</p>
+                                        <button
+                                            class="mt-6 max-w-fit rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Read
+                                            more</button>
+                                    </div>
+                                    <img class="object-cover object-center w-full rounded-lg aspect-16/9 h-100"
+                                        src="https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                        alt="" />
+                                </li>
+                            </ul>
                         </div>
-                        <img class="object-cover object-center w-full rounded-lg aspect-16/9 h-100"
-                            src="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                            alt="" />
-                    </div>
-                    <div class="glide__arrows float-right mt-4" data-glide-el="controls">
-                        <button class="glide__arrow glide__arrow--left px-4 py-2 bg-orange-500 text-white rounded font-semibold hover:bg-orange-600" data-glide-dir="<"><</button>
-                        <button class="glide__arrow glide__arrow--right px-4 py-2 bg-orange-500 text-white rounded font-semibold hover:bg-orange-600" data-glide-dir=">">></button>
+                        <div class="glide__arrows" data-glide-el="controls">
+                            <button type="button"
+                                class="glide__arrow glide__arrow--left absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                data-glide-dir="<">
+                                <span
+                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-2 group-focus:ring-(--primary) group-focus:outline-none font-semibold text-white">
+                                    < <span class="sr-only">Previous
+                                </span>
+                                </span>
+                            </button>
+                            <button type="button"
+                                class="glide__arrow glide__arrow--right absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                data-glide-dir=">">
+                                <span
+                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-2 group-focus:ring-(--primary) group-focus:outline-none font-semibold text-white">
+                                    >
+                                    <span class="sr-only">Next</span>
+                                </span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -84,6 +116,7 @@
     </main>
     </div>
     <script src="/js/dashboard.js" type="module"></script>
+    <script src="/js/carousel.js"></script>
 </body>
 
 </html>

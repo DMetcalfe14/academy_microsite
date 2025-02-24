@@ -1,19 +1,57 @@
+:root {
+   /* Leadership */
+  --primary: rgb(249 115 22); /* 500 */
+  --primary-hover: rgb(234 88 12); /* 600 */
+  --primary-saturated: rgb(255 237 213); /* 100 */
+  /* Tax */
+  /* --primary: rgb(59 130 246);
+  --primary-hover: rgb(37 99 235);
+  --primary-saturated:  rgb(219 234 254); */
+}
+
+.accent-primary {
+  accent-color: var(--primary);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.bg-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.outline-primary {
+  outline-color: var(--primary);
+}
+
+.border-primary {
+  border-color: var(--primary);
+}
+
+.saturated-background {
+  background-color: var(--primary-saturated);
+}
+
 .glide__slides {
   white-space: unset !important;
 }
 
 .toggle-active {
-  background-color: var(--color-orange-500);
+  background-color: var(--primary);
   color: #ffffff;
 }
 
 .toggle-inactive {
-  border: 1px solid var(--color-orange-500);
-  color: var(--color-orange-500);
-
+  border: 1px solid var(--primary);
+  color: var(--primary);
 }
 
 .toggle-inactive:hover {
-  background-color: var(--color-orange-500);
+  background-color: var(--primary);
   color: #ffffff;
 }

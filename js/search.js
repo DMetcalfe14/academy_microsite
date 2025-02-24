@@ -99,7 +99,15 @@ const params = new URLSearchParams(window.location.search);
 
 const search = document.querySelector("#search");
 
-search.addEventListener("input", (event) => {
+let debounceTimeout;
+const debounce = (func, delay) => {
+    return (...args) => {
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(() => func.apply(this, args), delay);
+    };
+};
+
+const handleSearchInput = (event) => {
     currentSearchQuery = event.target.value;
     const filtered = chain.handle(
         { searchQuery: currentSearchQuery,
@@ -110,7 +118,9 @@ search.addEventListener("input", (event) => {
         cards
     );
     renderPaginatedCards(filtered);
-});
+};
+
+search.addEventListener("input", debounce(handleSearchInput, 500));
 
 const minDurationInput = document.getElementById("min-duration");
 const maxDurationInput = document.getElementById("max-duration");
